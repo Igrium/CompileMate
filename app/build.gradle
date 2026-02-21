@@ -9,6 +9,7 @@ plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     id 'application'
     id 'org.openjfx.javafxplugin' version '0.1.0'
+    id 'io.freefair.lombok' version '9.2.0'
 }
 
 javafx {
@@ -28,6 +29,7 @@ dependencies {
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:31.1-jre'
     implementation 'com.google.code.gson:gson:2.10.1'
+    compileOnly 'org.jetbrains:annotations:26.1.0'
 }
 
 application {
