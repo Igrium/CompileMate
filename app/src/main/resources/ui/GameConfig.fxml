@@ -10,56 +10,60 @@
 <?import javafx.scene.layout.VBox?>
 
 
-<VBox fx:id="root" xmlns="http://javafx.com/javafx/20" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.igrium.compilesource.ui.GameConfigController">
-   <children>
-      <Label text="Select the build and game executables for this game configuration:" wrapText="true" />
-      <GridPane hgap="5.0" maxHeight="-Infinity">
+<VBox fx:id="root" xmlns="http://javafx.com/javafx/20" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.igrium.compilesource.ui.GameConfigController">
+    <padding>
+        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+    </padding>
+    <Label text="Select the build and game executables for this game configuration:" wrapText="true"/>
+    <GridPane hgap="5.0" maxHeight="-Infinity">
         <columnConstraints>
-          <ColumnConstraints hgrow="ALWAYS" minWidth="0.0" prefWidth="256.0" />
-          <ColumnConstraints hgrow="SOMETIMES" />
+            <ColumnConstraints hgrow="ALWAYS" minWidth="0.0" prefWidth="256.0"/>
+            <ColumnConstraints hgrow="SOMETIMES"/>
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints vgrow="SOMETIMES" />
-          <RowConstraints vgrow="SOMETIMES" />
-          <RowConstraints vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints vgrow="SOMETIMES"/>
+            <RowConstraints vgrow="SOMETIMES"/>
+            <RowConstraints vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
         </rowConstraints>
-         <children>
-            <Label text="Game executable:" GridPane.columnSpan="2">
-               <padding>
-                  <Insets top="5.0" />
-               </padding>
-            </Label>
-            <TextField fx:id="gameExeField" minWidth="0.0" GridPane.rowIndex="1" />
-            <Button mnemonicParsing="false" onAction="#browseGameExe" text="Browse" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label text="BSP executable:" GridPane.columnSpan="2" GridPane.rowIndex="5" />
-            <TextField fx:id="bspExeField" minWidth="0.0" GridPane.rowIndex="6" />
-            <Button mnemonicParsing="false" onAction="#browsBspExe" text="Browse" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <Label text="VIS executable:" GridPane.columnSpan="2" GridPane.rowIndex="7" />
-            <TextField fx:id="visExeField" minWidth="0.0" GridPane.rowIndex="8" />
-            <Button mnemonicParsing="false" onAction="#browsVisExe" text="Browse" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-            <Label text="RAD executable:" GridPane.columnSpan="2" GridPane.rowIndex="9" />
-            <TextField fx:id="radExeField" minWidth="0.0" GridPane.rowIndex="10" />
-            <Button mnemonicParsing="false" onAction="#browseRadExe" text="Browse" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-            <Label minWidth="-Infinity" text="Place compiled maps in this directory before running the game:" GridPane.columnSpan="2" GridPane.rowIndex="11" />
-            <TextField fx:id="mapDirField" minWidth="0.0" GridPane.rowIndex="12" />
-            <Button mnemonicParsing="false" onAction="#browseMapDir" text="Browse" GridPane.columnIndex="1" GridPane.rowIndex="12" />
-            <Label text="Gameinfo directory:" GridPane.columnSpan="2" GridPane.rowIndex="3" />
-            <TextField fx:id="gameDirField" GridPane.rowIndex="4" />
-            <Button mnemonicParsing="false" onAction="#browsGameDir" text="Browse" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-         </children>
-      </GridPane>
-   </children>
-   <padding>
-      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-   </padding>
+        <Label text="Game executable:" GridPane.columnSpan="2">
+            <padding>
+                <Insets top="5.0"/>
+            </padding>
+        </Label>
+        <TextField fx:id="gameExeField" minWidth="0.0" GridPane.rowIndex="1"/>
+        <Button mnemonicParsing="false" onAction="#browseGameExe" text="Browse" GridPane.columnIndex="1"
+                GridPane.rowIndex="1"/>
+        <Label text="BSP executable:" GridPane.columnSpan="2" GridPane.rowIndex="5"/>
+        <TextField fx:id="bspExeField" minWidth="0.0" GridPane.rowIndex="6"/>
+        <Button mnemonicParsing="false" onAction="#browsBspExe" text="Browse" GridPane.columnIndex="1"
+                GridPane.rowIndex="6"/>
+        <Label text="VIS executable:" GridPane.columnSpan="2" GridPane.rowIndex="7"/>
+        <TextField fx:id="visExeField" minWidth="0.0" GridPane.rowIndex="8"/>
+        <Button mnemonicParsing="false" onAction="#browsVisExe" text="Browse" GridPane.columnIndex="1"
+                GridPane.rowIndex="8"/>
+        <Label text="RAD executable:" GridPane.columnSpan="2" GridPane.rowIndex="9"/>
+        <TextField fx:id="radExeField" minWidth="0.0" GridPane.rowIndex="10"/>
+        <Button mnemonicParsing="false" onAction="#browseRadExe" text="Browse" GridPane.columnIndex="1"
+                GridPane.rowIndex="10"/>
+        <Label minWidth="-Infinity" text="Place compiled maps in this directory before running the game:"
+               GridPane.columnSpan="2" GridPane.rowIndex="11"/>
+        <TextField fx:id="mapDirField" minWidth="0.0" GridPane.rowIndex="12"/>
+        <Button mnemonicParsing="false" onAction="#browseMapDir" text="Browse" GridPane.columnIndex="1"
+                GridPane.rowIndex="12"/>
+        <Label text="Gameinfo directory:" GridPane.columnSpan="2" GridPane.rowIndex="3"/>
+        <TextField fx:id="gameDirField" GridPane.rowIndex="4"/>
+        <Button mnemonicParsing="false" onAction="#browsGameDir" text="Browse" GridPane.columnIndex="1"
+                GridPane.rowIndex="4"/>
+    </GridPane>
 </VBox>
