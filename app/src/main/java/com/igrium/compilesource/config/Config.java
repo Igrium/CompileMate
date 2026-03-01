@@ -1,5 +1,6 @@
 package com.igrium.compilesource.config;
 
+import com.igrium.compilesource.CompileSourceApp;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
@@ -9,7 +10,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CompileSourceConfig {
+public class Config {
+
+    public static Config getConfig() {
+        return CompileSourceApp.getInstance().getConfig();
+    }
+
     @Getter
     private final Map<String, GameConfig> games = new HashMap<>();
 

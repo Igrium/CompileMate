@@ -19,7 +19,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.igrium.compilesource.ui.MainWindowController">
    <children>
       <MenuBar useSystemMenuBar="true">
@@ -43,20 +42,23 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
               </rowConstraints>
                <children>
                   <Label text="Configurations" GridPane.columnSpan="2" />
                   <ChoiceBox maxWidth="1.7976931348623157E308" prefWidth="150.0" GridPane.rowIndex="1" />
                   <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Edit" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Label text="Compile/run commands:" GridPane.columnSpan="2" GridPane.rowIndex="2" />
-                  <ListView prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3" GridPane.rowSpan="4" />
+                  <ListView fx:id="commandList" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3" GridPane.rowSpan="4" />
                   <VBox spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <children>
-                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="New" />
-                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Remove" />
+                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#newCommand" text="New" />
+                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#removeCommand" text="Remove" />
                         <Separator />
-                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Move Up" />
-                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Move Down" />
+                        <Button fx:id="upButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#moveUp" text="Move Up" />
+                        <Button fx:id="downButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#moveDown" text="Move Down" />
                      </children>
                   </VBox>
                </children>
@@ -64,7 +66,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </GridPane>
-            <VBox prefHeight="352.0" prefWidth="269.0" spacing="10.0">
+            <VBox fx:id="commandProps" prefHeight="352.0" prefWidth="269.0" spacing="10.0">
                <children>
                   <Label text="Command Properties" />
                   <GridPane hgap="5.0" VBox.vgrow="ALWAYS">
@@ -81,7 +83,7 @@
                     </rowConstraints>
                      <children>
                         <Label text="Command:" />
-                        <TextField prefHeight="26.0" prefWidth="99.0" GridPane.rowIndex="1" />
+                        <TextField fx:id="commandNameField" prefHeight="26.0" prefWidth="99.0" GridPane.rowIndex="1" />
                         <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Cmds" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Label text="Parameters" GridPane.rowIndex="2">
                            <padding>
@@ -89,11 +91,11 @@
                            </padding>
                         </Label>
                         <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Params" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="TOP" />
-                        <TextArea maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="3" />
+                        <TextArea fx:id="commandArgsArea" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="3" />
                      </children>
                   </GridPane>
-                  <CheckBox fx:id="postExistsCheck" mnemonicParsing="false" text="Ensure file post-exists:" />
-                  <TextField fx:id="postExistsField" />
+                  <CheckBox fx:id="postFileCheck" mnemonicParsing="false" text="Ensure file post-exists:" />
+                  <TextField fx:id="postFileField" />
                </children>
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

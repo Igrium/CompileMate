@@ -1,5 +1,6 @@
 package com.igrium.compilesource.ui;
 
+import com.igrium.compilesource.CompileSourceApp;
 import com.igrium.compilesource.config.GameConfig;
 import javafx.beans.property.Property;
 import javafx.fxml.FXML;
@@ -8,6 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import lombok.Getter;
+import lombok.Setter;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.File;
@@ -79,6 +81,9 @@ public class GameConfigController {
         showDirChooser("Pick Map Destination", mapDirField.textProperty());
     }
 
+    @Setter
+    public @Nullable Runnable onClose;
+
     public void applyConfig() {
         if (config == null) {
             System.err.println("Config object not initialized!");
@@ -91,6 +96,11 @@ public class GameConfigController {
         config.setVisExe(visExeField.getText());
         config.setRadExe(radExeField.getText());
         config.setMapDir(mapDirField.getText());
+        CompileSourceApp.getInstance().saveConfigAsync();
+
+        if (onClose != null) {
+            onClose.run();
+        }
     }
 
     private void showFileChooser(String title, Property<String> textProperty) {

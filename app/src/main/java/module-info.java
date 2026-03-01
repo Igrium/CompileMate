@@ -6,4 +6,6 @@ module compilesource.app.main {
     requires static lombok;
     requires org.jetbrains.annotations;
     requires com.google.gson;
+
+    opens com.igrium.compilesource.ui to javafx.fxml;
 }
