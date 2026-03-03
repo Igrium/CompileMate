@@ -3,6 +3,7 @@ package com.igrium.compilesource;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.igrium.compilesource.config.Config;
+import com.igrium.compilesource.ui.MainWindowController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -31,6 +32,9 @@ public class CompileSourceApp extends Application {
     @Getter @NonNull
     private Config config = new Config();
 
+    @Getter
+    private MainWindowController mainWindow;
+
     @Override
     public void start(Stage stage) throws Exception {
         instance = this;
@@ -42,7 +46,10 @@ public class CompileSourceApp extends Application {
         }
 
         // noinspection ConstantConditions
-        Parent parent = FXMLLoader.load(getClass().getResource("/ui/MainWindow.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/MainWindow.fxml"));
+        Parent parent = loader.load();
+        mainWindow = loader.getController();
+
         stage.setScene(new Scene(parent));
         stage.show();
     }

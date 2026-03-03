@@ -40,4 +40,17 @@ public class GameConfig {
      */
     @Getter @Setter @NonNull
     private String mapDir = "";
+
+    public String resolvePath(String path) {
+        return path.replace("$game_exe", gameExe)
+                .replace("$gamedir", gameDir)
+                .replace("$bsp_exe", bspExe)
+                .replace("$vis_exe", visExe)
+                .replace("$rad_exe", radExe)
+                .replace("$bspdir", mapDir);
+    }
+
+    public String resolvePath(String path, String workingDir) {
+        return resolvePath(path).replace("$path", workingDir);
+    }
 }

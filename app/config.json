@@ -1,6 +1,59 @@
 {
   "games": {},
-  "presets": {},
+  "presets": {
+    "default2": [
+      {
+        "name": "Command 1",
+        "args": "sdadasdad",
+        "enabled": true,
+        "usePostFile": false
+      },
+      {
+        "name": "Command2",
+        "args": "",
+        "enabled": true,
+        "usePostFile": false
+      },
+      {
+        "name": "test3sduiafhawedfzas",
+        "args": "",
+        "enabled": true,
+        "usePostFile": false
+      },
+      {
+        "name": "",
+        "args": "",
+        "enabled": true,
+        "usePostFile": false
+      },
+      {
+        "name": "",
+        "args": "",
+        "enabled": true,
+        "usePostFile": false
+      }
+    ],
+    "default": [
+      {
+        "name": "Command 1",
+        "args": "sdadasdad",
+        "enabled": true,
+        "usePostFile": false
+      },
+      {
+        "name": "test3",
+        "args": "hello world",
+        "enabled": true,
+        "usePostFile": false
+      },
+      {
+        "name": "Command2",
+        "args": "",
+        "enabled": true,
+        "usePostFile": false
+      }
+    ]
+  },
   "selectedGame": "",
-  "selectedPreset": ""
+  "selectedPreset": "default2"
 }

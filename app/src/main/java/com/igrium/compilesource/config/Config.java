@@ -6,9 +6,7 @@ import lombok.NonNull;
 import lombok.Setter;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Config {
 
@@ -20,7 +18,7 @@ public class Config {
     private final Map<String, GameConfig> games = new HashMap<>();
 
     @Getter
-    private final Map<String, List<Command>> presets = new HashMap<>();
+    private final LinkedHashMap<String, List<Command>> presets = new LinkedHashMap<>();
 
     @Getter @Setter @NonNull
     private String selectedGame = "";
@@ -34,5 +32,13 @@ public class Config {
 
     public @Nullable List<Command> getPreset() {
         return presets.get(selectedPreset);
+    }
+
+    public List<Command> getOrInitPreset() {
+        return presets.computeIfAbsent(selectedPreset, _ -> new ArrayList<>());
+    }
+
+    public void savePreset(String presetName, List<Command> preset) {
+        presets.put(presetName, preset);
     }
 }

@@ -6,7 +6,9 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.experimental.Accessors;
+import org.jetbrains.annotations.Nullable;
 
 @Accessors(fluent = true)
 public final class MutableCommand {
@@ -73,7 +75,8 @@ public final class MutableCommand {
     }
 
     public Command toCommand() {
-        return new Command(getName(), getArgs(), isEnabled(), isUsePostFile(), getPostFile());
+
+        return new Command(orEmpty(getName()), orEmpty(getArgs()), isEnabled(), isUsePostFile(), getPostFile());
     }
 
     public void fromCommand(Command command) {
@@ -82,5 +85,9 @@ public final class MutableCommand {
         setEnabled(command.enabled());
         setUsePostFile(command.usePostFile());
         setPostFile(command.postFile());
+    }
+
+    private @NonNull String orEmpty(@Nullable String in) {
+        return in != null ? in : "";
     }
 }

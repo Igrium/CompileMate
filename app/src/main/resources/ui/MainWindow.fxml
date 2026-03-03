@@ -48,7 +48,7 @@
               </rowConstraints>
                <children>
                   <Label text="Configurations" GridPane.columnSpan="2" />
-                  <ChoiceBox maxWidth="1.7976931348623157E308" prefWidth="150.0" GridPane.rowIndex="1" />
+                  <ChoiceBox fx:id="presetSelector" maxWidth="1.7976931348623157E308" prefWidth="150.0" GridPane.rowIndex="1" />
                   <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Edit" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Label text="Compile/run commands:" GridPane.columnSpan="2" GridPane.rowIndex="2" />
                   <ListView fx:id="commandList" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3" GridPane.rowSpan="4" />
@@ -105,7 +105,7 @@
       </SplitPane>
       <ButtonBar prefHeight="40.0" prefWidth="200.0">
         <buttons>
-          <Button defaultButton="true" mnemonicParsing="false" text="Go!" />
+          <Button defaultButton="true" mnemonicParsing="false" onAction="#compile" text="Go!" />
         </buttons>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

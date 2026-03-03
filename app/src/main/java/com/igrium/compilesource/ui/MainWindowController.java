@@ -1,6 +1,8 @@
 package com.igrium.compilesource.ui;
 
+import com.igrium.compilesource.CompileSourceApp;
 import com.igrium.compilesource.config.Command;
+import com.igrium.compilesource.config.Config;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.value.ChangeListener;
@@ -11,10 +13,15 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxListCell;
 import javafx.util.StringConverter;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 //@Accessors(fluent = true)
 public class MainWindowController {
+
+    @FXML
+    private ChoiceBox<String> presetSelector;
 
     @FXML
     private ListView<MutableCommand> commandList;
@@ -44,19 +51,6 @@ public class MainWindowController {
         return commandList.getSelectionModel().selectedItemProperty();
     }
 
-    private final StringConverter<MutableCommand> converter = new StringConverter<MutableCommand>() {
-
-        @Override
-        public String toString(MutableCommand mutableCommand) {
-            return mutableCommand.getName();
-        }
-
-        @Override
-        public MutableCommand fromString(String s) {
-            return null;
-        }
-    };
-
     @FXML
     void initialize() {
         commandList.setCellFactory(v -> new CommandListCell());
@@ -77,6 +71,13 @@ public class MainWindowController {
                 .flatMap(s -> s.selectedItemProperty().isNull()));
 
         postFileField.disableProperty().bind(postFileCheck.selectedProperty().not());
+
+        presetSelector.getSelectionModel().selectedItemProperty().addListener(this::onSelectPreset);
+        presetSelector.getItems().addAll(Config.getConfig().getPresets().keySet());
+        if (presetSelector.getItems().isEmpty()) {
+            presetSelector.getItems().add("default");
+        }
+        presetSelector.getSelectionModel().select(0);
     }
 
     private void onSetSelectedCommand(ObservableValue<? extends MutableCommand> observable, MutableCommand prevCommand, MutableCommand newCommand) {
@@ -99,6 +100,21 @@ public class MainWindowController {
         }
     }
 
+    private void onSelectPreset(ObservableValue<?> observable, String oldVal, String newVal) {
+        if (Objects.equals(oldVal, newVal))
+            return;
+
+        if (oldVal != null && !oldVal.isBlank()) {
+            savePreset(oldVal);
+        }
+
+        var config = Config.getConfig();
+        config.setSelectedPreset(newVal);
+
+        var preset = config.getPresets().get(newVal);
+        loadPreset(preset != null ? preset : List.of());
+    }
+
     public void loadPreset(List<? extends Command> preset) {
         commandList.getItems().clear();
         for (Command command : preset) {
@@ -113,11 +129,20 @@ public class MainWindowController {
         return preset;
     }
 
+    public void savePreset(String presetName) {
+        Config.getConfig().savePreset(presetName, savePreset(new ArrayList<>()));
+        CompileSourceApp.getInstance().saveConfigAsync();
+    }
+
+    public void savePreset() {
+        savePreset(presetSelector.getSelectionModel().getSelectedItem());
+    }
+
     @FXML
     public void newCommand() {
         MutableCommand command = new MutableCommand();
         command.setEnabled(true);
-        commandList.getItems().add(command);
+        commandList.getItems().add(commandList.getSelectionModel().getSelectedIndex() + 1, command);
     }
 
     @FXML
@@ -162,6 +187,11 @@ public class MainWindowController {
         commandList.getItems().set(selectedIdx, other);
 
         commandList.getSelectionModel().select(selectedIdx + 1);
+    }
+
+    @FXML
+    public void compile() {
+        savePreset();
     }
 }
 
